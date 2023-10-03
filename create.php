@@ -8,8 +8,22 @@ require_once"./database.php";
  * */ 
 
  $dataBase = new Database();
- $query = "SELECT * FROM  info_users ";
 
+ $notification = '';
+// data create form validation
+if(isset($_POST['submit'])){
+    $user_name = $_POST['user_name'];
+    $email = $_POST['email'];
+    $skill = $_POST['skill'];
+
+    if($user_name == "" && $email == "" && $skill == ""){
+        $notification = "<p style='color: red; font-size: 20px;'>Field Mush Not be Empty!!</p>";
+    }else{
+        $query = "INSERT INTO  user_info (use_name, email , skill) VALUES ('$user_name', '$email', '$skill')";
+
+        $dataBase -> insertData($query);
+    }
+}
 
 ?>
 
@@ -27,10 +41,13 @@ require_once"./database.php";
         </div>
         <div class="row">
             <div class="col-lg-7 offset-lg-3">
-                <form action="create.php" class="form">
+                <form action="create.php" class="form" method="POST">
+                    <?php if(isset( $notification )){
+                        echo  $notification ; 
+                    }?>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input id="name" type="text" class="form-control" name="name">
+                        <input id="name" type="text" class="form-control" name="user_name">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>

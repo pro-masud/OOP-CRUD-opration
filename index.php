@@ -8,10 +8,22 @@ require_once"./database.php";
  * */ 
 
  $dataBase = new Database();
- $query = "SELECT * FROM  info_users ";
+ $query = "SELECT * FROM  user_info ";
 
 //  get selected method here
 $result = $dataBase -> selected($query);
+
+
+?>
+
+<?php 
+/**
+ * get data urlencode 
+ * */ 
+
+ if(isset($_GET['msg'])){
+    $notification = "<p style='color=green; font-size:20px;'>{$_GET['msg']}</p>";
+ }
 
 
 ?>
@@ -29,6 +41,11 @@ $result = $dataBase -> selected($query);
             </div>
         </div>
         <div class="row">
+            <div class="row">
+                <div class="col-lg-10">
+                    <?php if($notification){ echo $notification; } ?>
+                </div>
+            </div>
             <div class="col-lg-10">
                 <table class="table">
                     <thead>
@@ -45,7 +62,7 @@ $result = $dataBase -> selected($query);
                             <?php while($data = $result -> fetch_assoc()): ?>
                         <tr>
                             <td><?php echo $data['id']?></td>
-                            <td><?php echo $data['name']?></td>
+                            <td><?php echo $data['use_name']?></td>
                             <td><?php echo $data['email']?></td>
                             <td><?php echo $data['skill']?></td>
                             <td><a style="color: green;" href="update.php?id=<?php echo $data['id']?>">Edit</a> | <a style="color:red;" href="delete.php?id=<?php echo $data['id']?>">Delete</a></td>

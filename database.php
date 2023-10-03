@@ -34,4 +34,19 @@ class Database{
          return false;
       }
     }
+
+
+
+   /**
+    * user add to database  
+    */  
+
+    public function  insertData($query){
+      $setData = $this -> connection -> query($query) or die($this -> error . __FILE__);
+      if($setData){
+         header("location: index.php?msg=".urlencode('Data Send Successfully Database'));
+      }else{
+         die("Erroe: (". $this -> connection -> errno.")".$this -> connection -> error);
+      }
+    }
 }
