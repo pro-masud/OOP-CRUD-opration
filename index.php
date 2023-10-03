@@ -21,6 +21,15 @@ $result = $dataBase -> selected($query);
     <div class="container">
         <div class="row">
             <div class="col-lg-10">
+                <div class="button-all">
+                    <div class="btn-group">
+                        <a class="btn btn-info" href="create.php">Add User</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
                 <table class="table">
                     <thead>
                         <tr>
